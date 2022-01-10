@@ -3,6 +3,9 @@ ARG IMAGE_VERSION=9.0-jdk11-openjdk-slim-buster
 ARG JAVA_HOME=/usr/local/openjdk-11
 FROM tomcat:$IMAGE_VERSION
 
+RUN chgrp -R 0 /usr/local/tomcat && \
+    chmod -R g=u /usr/local/tomcat
+
 LABEL maintainer="Tim Sutton<tim@linfiniti.com>"
 ARG GS_VERSION=2.20.1
 ARG WAR_URL=https://downloads.sourceforge.net/project/geoserver/GeoServer/${GS_VERSION}/geoserver-${GS_VERSION}-war.zip
